@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deployed via AWS CodePipeline → CodeBuild → CodeDeploy</title>
+    <style>
+      body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+           margin:0; padding:40px; line-height:1.6; background:#f9fafb; color:#111827}
+      .card{max-width:760px; margin:auto; background:#fff; padding:32px; border-radius:14px; 
+            box-shadow:0 10px 30px rgba(0,0,0,.07)}
+      h1{font-size:28px; margin:0 0 8px}
+      p{margin:8px 0}
+      code{background:#f3f4f6; padding:2px 6px; border-radius:6px}
+      .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600; font-size:12px;}
+      .stack{margin-top:10px}
+      ul{padding-left:20px}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="badge">AWS Task‑5 • Demo</div>
+      <h1>It works! 🚀</h1>
+      <p>You are seeing a static site served from <strong>/var/www/html</strong> on an EC2 instance.</p>
+      <p>Deployed automatically via <strong>CodeCommit → CodeBuild → CodeDeploy → CodePipeline</strong>.</p>
+      <div class="stack">
+        <p>Next steps you can try:</p>
+        <ul>
+          <li>Edit <code>index.html</code> and push to CodeCommit — the pipeline should redeploy automatically.</li>
+          <li>Open the CodePipeline console to watch each stage run.</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

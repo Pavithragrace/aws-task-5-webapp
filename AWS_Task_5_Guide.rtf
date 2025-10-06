@@ -1,0 +1,81 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0\froman Times New Roman;}{\f1\fmodern Courier New;}{\f2\fswiss Arial;}}
+\fs24
+\b AWS Task-5 — End-to-End Guide (CodeCommit, CodeBuild, CodeDeploy, CodePipeline)\b0\line
+Date: 06 Oct 2025\line
+Author: ChatGPT for Pavithra A\line\line
+
+\pard\sa200\sl276\slmult1
+\b What you'll build\b0\line
+A simple static website deployed to an EC2 instance automatically using CodePipeline (Source: CodeCommit → Build: CodeBuild → Deploy: CodeDeploy). Access it via the EC2 public URL.\line\line
+
+\b Architecture\b0\line
+- Developer commits to CodeCommit.\line
+- CodePipeline detects the change, triggers CodeBuild.\line
+- CodeBuild outputs the artifact (your site files) to the pipeline.\line
+- CodeDeploy copies files to \f1 /var/www/html\f0 on EC2 and restarts Apache.\line\line
+
+\b Prerequisites\b0\line
+1) Active AWS account and IAM user with console+programmatic access (for learning: Admin permissions).\line
+2) Region set to \b ap-south-1 (Mumbai)\b0.\line
+3) Git installed locally.\line
+4) AWS CLI configured (\f1 aws configure\f0).\line\line
+
+\b Step-by-step (high level)\b0\line
+1) Create CodeCommit repo and push the starter code.\line
+2) Launch an EC2 (Amazon Linux 2) with an \b IAM instance profile\b0 and Security Group allowing HTTP(80).\line
+3) Install the \b CodeDeploy agent\b0 on EC2 (User Data or SSH).\line
+4) Create a CodeDeploy Application + Deployment Group (target by EC2 tag).\line
+5) Create a CodeBuild Project (uses \f1 buildspec.yml\f0).\line
+6) Create a CodePipeline that wires Source→Build→Deploy.\line
+7) Push a change and verify the site at EC2 Public IPv4 DNS.\line\line
+
+\b Repo files\b0\line
+- \f1 index.html\f0 — demo page.\line
+- \f1 appspec.yml\f0 — tells CodeDeploy what to copy and which hooks to run.\line
+- \f1 buildspec.yml\f0 — tells CodeBuild what to output.\line
+- \f1 scripts/install_dependencies.sh\f0 — installs Apache.\line
+- \f1 scripts/start_server.sh\f0 — starts/restarts Apache.\line
+- \f1 scripts/stop_server.sh\f0 — stops Apache.\line\line
+
+\b One‑line sentences (for report)\b0\line
+1) Created a CodeCommit repository and pushed a static website.\line
+2) Provisioned an Amazon Linux 2 EC2 with HTTP open and IAM instance profile attached.\line
+3) Installed and verified the AWS CodeDeploy agent on the instance.\line
+4) Configured a CodeDeploy application and deployment group using EC2 tags.\line
+5) Set up a CodeBuild project to package artifacts from the repo.\line
+6) Built a CodePipeline (CodeCommit→CodeBuild→CodeDeploy) for automated deployment.\line
+7) Validated deployment by browsing the EC2 Public IPv4 DNS.\line
+8) Mirrored the repo to GitHub and submitted links with screenshots.\line\line
+
+\b Helpful User Data for EC2 (Amazon Linux 2)\b0\line
+{\f1
+#!/bin/bash\line
+yum update -y\line
+yum install -y ruby wget awscli httpd\line
+region=ap-south-1\line
+cd /home/ec2-user\line
+wget https://aws-codedeploy-${region}.s3.${region}.amazonaws.com/latest/install\line
+chmod +x ./install\line
+./install auto\line
+systemctl enable codedeploy-agent\line
+systemctl start codedeploy-agent\line
+systemctl enable httpd\line
+systemctl start httpd\line
+}\f0\line\line
+
+\b Screenshot checklist\b0\line
+- IAM user sign-in + region (ap-south-1).\line
+- CodeCommit repo with files.\line
+- EC2 instance details (public IP), Security Group (port 80 open).\line
+- IAM instance profile attached to EC2.\line
+- CodeDeploy app + deployment group (EC2 tag filter).\line
+- CodeBuild project last build Succeeded.\line
+- CodePipeline all stages Succeeded.\line
+- Browser showing the deployed page.\line\line
+
+\b Cleanup\b0\line
+- Disable pipeline and terminate EC2 to avoid charges.\line
+
+\pard
+}
