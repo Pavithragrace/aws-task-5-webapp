@@ -3,33 +3,59 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Deployed via AWS CodePipeline → CodeBuild → CodeDeploy</title>
+    <title>AWS Task-5 • Pavithra A</title>
     <style>
-      body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
-           margin:0; padding:40px; line-height:1.6; background:#f9fafb; color:#111827}
-      .card{max-width:760px; margin:auto; background:#fff; padding:32px; border-radius:14px; 
-            box-shadow:0 10px 30px rgba(0,0,0,.07)}
-      h1{font-size:28px; margin:0 0 8px}
-      p{margin:8px 0}
-      code{background:#f3f4f6; padding:2px 6px; border-radius:6px}
-      .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600; font-size:12px;}
-      .stack{margin-top:10px}
-      ul{padding-left:20px}
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        margin: 0;
+        padding: 50px;
+        background: #f9fafb;
+        color: #111827;
+        text-align: center;
+      }
+      .card {
+        background: #fff;
+        max-width: 700px;
+        margin: auto;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      }
+      h1 { color: #2563eb; font-size: 32px; margin-bottom: 10px; }
+      p { line-height: 1.6; font-size: 16px; }
+      .badge {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #e0f2fe;
+        color: #0369a1;
+        border-radius: 9999px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      footer {
+        margin-top: 30px;
+        font-size: 13px;
+        color: #6b7280;
+      }
+      code {
+        background: #f3f4f6;
+        padding: 3px 6px;
+        border-radius: 4px;
+      }
     </style>
   </head>
   <body>
     <div class="card">
-      <div class="badge">AWS Task‑5 • Demo</div>
-      <h1>It works! 🚀</h1>
-      <p>You are seeing a static site served from <strong>/var/www/html</strong> on an EC2 instance.</p>
-      <p>Deployed automatically via <strong>CodeCommit → CodeBuild → CodeDeploy → CodePipeline</strong>.</p>
-      <div class="stack">
-        <p>Next steps you can try:</p>
-        <ul>
-          <li>Edit <code>index.html</code> and push to CodeCommit — the pipeline should redeploy automatically.</li>
-          <li>Open the CodePipeline console to watch each stage run.</li>
-        </ul>
-      </div>
+      <div class="badge">AWS Task-5 • Automated Deployment</div>
+      <h1>🎉 Deployment Successful!</h1>
+      <p>Your static website has been successfully hosted using <strong>Amazon S3</strong>.</p>
+      <p>Automation is handled through <strong>GitHub Actions</strong>, which syncs your files automatically to the S3 bucket <code>task5-pavithra-ap-south-1</code> every time you push code.</p>
+      <p>This demonstrates a complete <strong>CI/CD flow</strong> without needing CodeCommit or CodePipeline access.</p>
+
+      <p><b>Next test:</b> Edit this <code>index.html</code> and push again — your site will update automatically!</p>
+
+      <footer>Created by <b>Pavithra A</b> • AWS Task-5 Assignment</footer>
     </div>
   </body>
 </html>
+
